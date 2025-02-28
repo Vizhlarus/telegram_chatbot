@@ -1,6 +1,6 @@
 from aiogram import Router, types
 from aiogram.filters import CommandStart
-from database.db import save_user, save_message
+from bot.database.db import save_user, save_message
 
 
 router = Router()  # Роутер для обработки команд

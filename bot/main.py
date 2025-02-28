@@ -3,7 +3,7 @@ import asyncio
 import logging
 
 from config import BOT_TOKEN
-from handlers import router  # Подключаем обработчики команд
+from bot.handlers import router  # Подключаем обработчики команд
 
 # Включаем логирование
 logging.basicConfig(level=logging.INFO)
