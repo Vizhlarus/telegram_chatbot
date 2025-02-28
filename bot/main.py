@@ -1,9 +1,9 @@
-from aiogram import Bot, Dispatcher
 import asyncio
 import logging
+from aiogram import Bot, Dispatcher
 
-from config import BOT_TOKEN
-from bot.handlers import router  # Подключаем обработчики команд
+from bot.config import BOT_TOKEN
+from bot.handlers import router
 
 # Включаем логирование
 logging.basicConfig(level=logging.INFO)

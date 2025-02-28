@@ -1,7 +1,6 @@
 from aiogram import Router, types
 from aiogram.filters import CommandStart
-from bot.database.db import save_user, save_message
-
+from database.db import save_user, save_message
 
 router = Router()  # Роутер для обработки команд
 
@@ -18,17 +17,17 @@ async def start_command(message: types.Message):
         "/talk — поговорить с ботом 💬\n"
     )
 
-    @router.message()
-    async def handle_message(message: types.Message):
-        # Сохраняем пользователя (если он новый)
-        await save_user(
-            user_id=message.from_user.id,
-            username=message.from_user.username,
-            full_name=message.from_user.full_name
-        )
+@router.message()
+async def handle_message(message: types.Message):
+    # Сохраняем пользователя (если он новый)
+    await save_user(
+        user_id=message.from_user.id,
+        username=message.from_user.username,
+        full_name=message.from_user.full_name
+    )
 
-        # Сохраняем сообщение в базу
-        await save_message(
-            user_id=message.from_user.id,
-            text=message.text
-        )
+    # Сохраняем сообщение в базу
+    await save_message(
+        user_id=message.from_user.id,
+        text=message.text
+    )

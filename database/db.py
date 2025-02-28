@@ -1,9 +1,9 @@
 from motor.motor_asyncio import AsyncIOMotorClient
-from bot.config import MONGO_URI
+from bot.config import MONGO_URI  # ✅ Исправленный импорт
 
 # Подключение к MongoDB
 client = AsyncIOMotorClient(MONGO_URI)
-db = client["telegram_chatbot"]  # База данных
+db = client["telegram_chatbot"]
 
 # Коллекции
 users_collection = db["users"]
