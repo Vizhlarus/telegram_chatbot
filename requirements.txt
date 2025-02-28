@@ -1,0 +1,10 @@
+aiogram  # Телеграм-бот
+telethon==1.30  # Работа с Telegram API (загрузка истории)
+motor==3.1.1  # Асинхронный драйвер MongoDB
+transformers==4.38.1  # NLP-модель rubert-tiny2
+torch  # Поддержка ML-моделей
+emoji==2.5.1  # Работа с эмодзи
+beautifulsoup4==4.12.2  # Парсинг анекдотов
+lxml==4.9.3  # Обработка HTML
+python-dotenv==1.0.0  # Работа с переменными окружения
+pytest==8.0.2  # Тестирование кода
