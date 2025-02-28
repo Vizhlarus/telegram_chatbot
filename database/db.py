@@ -1,6 +1,5 @@
 from motor.motor_asyncio import AsyncIOMotorClient
-
-from config import MONGO_URI
+from bot.config import MONGO_URI
 
 # Подключение к MongoDB
 client = AsyncIOMotorClient(MONGO_URI)
