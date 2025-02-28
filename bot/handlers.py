@@ -31,3 +31,35 @@ async def handle_message(message: types.Message):
         user_id=message.from_user.id,
         text=message.text
     )
+
+    @router.message(commands=["stats"])
+    async def stats_command(message: types.Message):
+        chat_id = message.chat.id
+
+        # Считаем общее количество сообщений
+        total_messages = await messages_collection.count_documents({})
+
+        # Топ-5 болтунов (самые активные)
+        top_chatters = users_collection.find().sort("messages_count", -1).limit(5)
+        top_chatters_list = [
+            f"🥇 {user['full_name']} (@{user['username']}) — {user['messages_count']} сообщений"
+            async for user in top_chatters
+        ]
+
+        # Топ-5 молчунов (самые неактивные)
+        top_silent = users_collection.find().sort("messages_count", 1).limit(5)
+        top_silent_list = [
+            f"🔇 {user['full_name']} (@{user['username']}) — {user['messages_count']} сообщений"
+            async for user in top_silent
+        ]
+
+        # Отправляем сообщение в чат
+        stats_message = (
+                f"📊 **Статистика чата**:\n\n"
+                f"📩 Всего сообщений: {total_messages}\n\n"
+                f"💬 **Топ-5 активных**:\n" + "\n".join(top_chatters_list) + "\n\n"
+                                                                            f"😶 **Топ-5 молчунов**:\n" + "\n".join(
+            top_silent_list)
+        )
+
+        await message.answer(stats_message, parse_mode="Markdown")
